@@ -28,6 +28,12 @@ class RegistreController extends Controller
      */
     public function index(Request $request): View
     {
+        $user = $request->user();
+        if ($user && !$user->aDroit('registres.consulter')) {
+            app(\App\Services\Journal\JournalService::class)->accesRefuse("DROIT:registres.consulter SUR {$request->path()}", $user);
+            abort(403, "Vous n'avez pas l'autorisation de consulter l'inventaire des registres.");
+        }
+
         $filtres = $request->only(['type', 'etat_materiel', 'presence', 'inventaire_complet', 'recherche']);
         $registres = $this->registreService->paginer($filtres, 25);
 

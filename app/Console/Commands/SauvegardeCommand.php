@@ -160,7 +160,7 @@ class SauvegardeCommand extends Command
                     $cols = array_map(fn($col) => "`{$col}`", array_keys($rowArray));
                     $vals = array_map(function ($val) {
                         if ($val === null) return 'NULL';
-                        return "'" . addslashes((string)$val) . "'";
+                        return DB::getPdo()->quote((string)$val);
                     }, array_values($rowArray));
 
                     $insertSql = "INSERT INTO `{$tableName}` (" . implode(', ', $cols) . ") VALUES (" . implode(', ', $vals) . ");\n";

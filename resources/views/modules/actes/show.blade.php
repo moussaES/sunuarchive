@@ -891,6 +891,8 @@
         <x-modal id="modal-remplacer-fichier" titre="Remplacement de copie numérique — Justification requise">
             <form action="{{ route('fichiers.remplacer', $acte->fichierActif->id_fichier) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="_modal_source" value="modal-remplacer-fichier">
+                <input type="hidden" name="id_fichier" value="{{ $acte->fichierActif->id_fichier }}">
 
                 <div style="border: 1px solid var(--noir); padding: 12px; margin-bottom: 16px; background-color: var(--blanc);">
                     <div style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Copie actuelle qui sera archivée :</div>

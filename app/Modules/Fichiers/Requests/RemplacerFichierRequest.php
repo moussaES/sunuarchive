@@ -17,6 +17,15 @@ class RemplacerFichierRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        if (!$this->has('id_fichier') && $this->route('id')) {
+            $this->merge([
+                'id_fichier' => (int) $this->route('id'),
+            ]);
+        }
+    }
+
     public function rules(): array
     {
         return [

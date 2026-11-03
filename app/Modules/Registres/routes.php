@@ -16,6 +16,7 @@ Route::middleware('web')->group(function () {
 
     Route::put('/registres/{id}', [RegistreController::class, 'update'])
         ->middleware(['auth', 'droit:registres.modifier'])
+        ->whereNumber('id')
         ->name('registres.update');
 
     Route::get('/registres/export/csv', [RegistreController::class, 'exporter'])
