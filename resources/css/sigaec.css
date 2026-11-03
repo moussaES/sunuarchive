@@ -1,0 +1,550 @@
+/**
+ * SIGAEC - Système informatisé de gestion des archives de l'état civil
+ * Mairie de Tattaguine (Sénégal)
+ * 
+ * DESIGN SYSTEM : STRICTEMENT MONOCHROME VERT MENTHE (#3EB489)
+ * Palette autorisée : #3EB489, #FFFFFF, #111111 (inherit, currentColor, transparent)
+ * Aucune autre couleur, aucun dégradé, aucune opacité intermédiaire.
+ */
+
+:root {
+  --menthe: #3EB489;
+  --blanc:  #FFFFFF;
+  --noir:   #111111;
+  --rouge:  #DC2626;
+  --police: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Réinitialisation et base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--police);
+  font-size: 15px;
+  line-height: 1.5;
+  background-color: var(--blanc);
+  color: var(--noir);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:hover, a:focus {
+  background-color: var(--menthe);
+  color: var(--noir);
+  text-decoration: none;
+}
+
+/* Mise en page globale */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Barre latérale gauche (Fond menthe fixe) */
+.sidebar {
+  width: 280px;
+  background-color: var(--menthe);
+  color: var(--noir);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: var(--menthe);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--noir);
+}
+
+.sidebar__brand {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--noir);
+}
+
+.sidebar__title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.sidebar__subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 44px;
+}
+
+.sidebar__link:hover, .sidebar__link:focus {
+  background-color: var(--blanc);
+  color: var(--noir);
+}
+
+.sidebar__link--active {
+  background-color: var(--blanc);
+  color: var(--noir);
+  font-weight: 800;
+}
+
+.sidebar__footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 2px solid var(--noir);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__user {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sidebar__profile-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border: 1px solid var(--noir);
+  background-color: var(--blanc);
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* Contenu principal */
+.main-content {
+  flex-grow: 1;
+  padding: 32px;
+  background-color: var(--blanc);
+  overflow-y: auto;
+}
+
+/* Bandeau permanent officiel obligatoire (Section 1) */
+.bandeau-officiel {
+  background-color: var(--blanc);
+  border: 2px solid var(--noir);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bandeau-officiel__texte {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.bandeau-officiel__accent {
+  background-color: var(--menthe);
+  color: var(--noir);
+  padding: 4px 8px;
+  font-weight: 800;
+  border: 1px solid var(--noir);
+}
+
+/* Titres */
+h1, .titre-page {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--noir);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 4px solid var(--menthe);
+  display: inline-block;
+}
+
+h2, .titre-section {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--noir);
+  margin-bottom: 16px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--noir);
+}
+
+h3, .titre-bloc {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--noir);
+  margin-bottom: 12px;
+}
+
+/* Boutons (44px min pour accessibilité) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--menthe);
+  color: var(--noir);
+  font-weight: 800;
+  border: 1px solid var(--noir);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--blanc);
+  color: var(--noir);
+  border: 2px solid var(--noir);
+}
+
+.btn-secondary {
+  background-color: var(--blanc);
+  color: var(--noir);
+  font-weight: 600;
+  border: 1px solid var(--noir);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: var(--menthe);
+  color: var(--noir);
+}
+
+.btn-danger {
+  background-color: var(--rouge);
+  color: var(--blanc);
+  font-weight: 800;
+  border: 1px solid var(--noir);
+}
+
+.btn-danger:hover, .btn-danger:focus {
+  background-color: var(--noir);
+  color: var(--blanc);
+  border: 2px solid var(--noir);
+}
+
+/* Cartes et panneaux */
+.carte {
+  background-color: var(--blanc);
+  border: 1px solid var(--noir);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.carte__header {
+  border-bottom: 2px solid var(--menthe);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grille-indicateurs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.indicateur {
+  background-color: var(--blanc);
+  border: 1px solid var(--noir);
+  padding: 20px;
+  text-align: center;
+}
+
+.indicateur__chiffre {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.indicateur__libelle {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Statuts typographiques sans couleur chromatique additionnelle (Section 3.4) */
+.statut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.statut--positif {
+  background-color: var(--menthe);
+  color: var(--noir);
+  border: 1px solid var(--noir);
+}
+
+.statut--attente {
+  background-color: var(--blanc);
+  color: var(--noir);
+  border: 1px solid var(--noir);
+}
+
+.statut--attention {
+  background-color: var(--blanc);
+  color: var(--noir);
+  border: 2px dashed var(--noir);
+}
+
+.statut--critique {
+  background-color: var(--noir);
+  color: var(--blanc);
+  border: 1px solid var(--noir);
+}
+
+/* Formulaires */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.form-control, .form-select, .form-textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 15px;
+  background-color: var(--blanc);
+  color: var(--noir);
+  border: 1px solid var(--noir);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-control:focus, .form-select:focus, .form-textarea:focus {
+  outline: 3px solid var(--menthe);
+  outline-offset: 1px;
+}
+
+.form-hint {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-error {
+  font-size: 13px;
+  font-weight: 800;
+  margin-top: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--noir);
+  background-color: var(--noir);
+  color: var(--blanc);
+}
+
+/* Tableaux avec conteneur défilant */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 24px;
+  border: 1px solid var(--noir);
+}
+
+.table-sigaec {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background-color: var(--blanc);
+}
+
+.table-sigaec th {
+  background-color: var(--blanc);
+  color: var(--noir);
+  font-weight: 800;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--noir);
+  border-right: 1px solid var(--noir);
+}
+
+.table-sigaec th:last-child {
+  border-right: none;
+}
+
+.table-sigaec td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--noir);
+  border-right: 1px solid var(--noir);
+  vertical-align: middle;
+}
+
+.table-sigaec td:last-child {
+  border-right: none;
+}
+
+.table-sigaec tr:last-child td {
+  border-bottom: none;
+}
+
+.table-sigaec tbody tr:hover {
+  background-color: var(--menthe);
+  color: var(--noir);
+}
+
+/* Barres de progression noir et menthe plein */
+.barre-progression {
+  width: 100%;
+  height: 20px;
+  border: 1px solid var(--noir);
+  background-color: var(--blanc);
+}
+
+.barre-progression__remplissage {
+  height: 100%;
+  background-color: var(--menthe);
+}
+
+/* Fenêtres Modales / Popups (HTML5 <dialog>) */
+.sigaec-modal {
+  margin: auto;
+  width: 90%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: var(--blanc);
+  color: var(--noir);
+  border: 3px solid var(--noir);
+  box-shadow: 8px 8px 0 var(--noir);
+  padding: 0;
+}
+
+.sigaec-modal::backdrop {
+  background-color: transparent;
+}
+
+.sigaec-modal__header {
+  background-color: var(--menthe);
+  color: var(--noir);
+  padding: 16px 20px;
+  border-bottom: 2px solid var(--noir);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sigaec-modal__title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.sigaec-modal__close {
+  background-color: var(--blanc);
+  color: var(--noir);
+  border: 1px solid var(--noir);
+  font-weight: 900;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sigaec-modal__close:hover, .sigaec-modal__close:focus {
+  background-color: var(--noir);
+  color: var(--blanc);
+}
+
+.sigaec-modal__body {
+  padding: 24px 20px;
+  background-color: var(--blanc);
+}
+
+.sigaec-modal__footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--noir);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--blanc);
+}
+
+/* Alertes et notifications flash */
+.alerte {
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.alerte--succes {
+  background-color: var(--menthe);
+  color: var(--noir);
+  border: 2px solid var(--noir);
+}
+
+.alerte--erreur {
+  background-color: var(--noir);
+  color: var(--blanc);
+  border: 2px solid var(--noir);
+}
+
+/* Responsive */
+@media (max-width: 840px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+}
